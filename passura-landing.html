@@ -288,6 +288,9 @@
     .job-details[open] summary::after { content: '–'; }
     .job-details[open] summary { margin-bottom: .3rem; }
     .job-details .list-check { margin-top: 1rem; margin-bottom: .2rem; }
+    /* .list-check setzt global display:flex – das überschreibt sonst das
+       native Verstecken von <details>, wenn zugeklappt. Explizit erzwingen: */
+    .job-details:not([open]) .list-check { display: none; }
 
     .benefits-strip {
       display: flex; flex-wrap: wrap; gap: .75rem; margin: 2.5rem 0 3rem;
