@@ -272,6 +272,23 @@
     .list-check li { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; color: #c8d0d8; }
     .list-check li::before { content: '✓'; color: var(--orange); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
 
+    /* ─── Job-Details Accordion (auf-/zuklappbar, am Anfang geschlossen) ── */
+    .job-details { margin-bottom: 1.4rem; }
+    .job-details summary {
+      cursor: pointer; list-style: none;
+      display: flex; align-items: center; justify-content: center; gap: .4rem;
+      color: var(--orange); font-weight: 700; font-size: .82rem;
+      text-transform: uppercase; letter-spacing: .05em;
+      padding: .5rem 0;
+    }
+    .job-details summary::-webkit-details-marker { display: none; }
+    .job-details summary::after {
+      content: '+'; font-size: 1.15rem; line-height: 1; font-weight: 400;
+    }
+    .job-details[open] summary::after { content: '–'; }
+    .job-details[open] summary { margin-bottom: .3rem; }
+    .job-details .list-check { margin-top: 1rem; margin-bottom: .2rem; }
+
     .benefits-strip {
       display: flex; flex-wrap: wrap; gap: .75rem; margin: 2.5rem 0 3rem;
     }
@@ -610,13 +627,16 @@
         <div class="job-type">Vollzeit / Teilzeit</div>
         <h3>KFZ Mechatroniker (m/w/d)</h3>
         <p>Du liebst Autos, denkst analytisch und liebst es, wenn der Motor wieder läuft? Dann bist du bei uns genau richtig.</p>
-        <ul class="list-check">
-          <li>Inspektionen und Wartungsarbeiten aller Marken</li>
-          <li>Fehlerdiagnose mit modernen Messgeräten</li>
-          <li>Motor- und Getriebeinstandsetzung</li>
-          <li>Brems-, Fahr- und Lenkungsarbeiten</li>
-          <li>Klimaanlageservice und Elektrik</li>
-        </ul>
+        <details class="job-details">
+          <summary>Deine Aufgaben</summary>
+          <ul class="list-check">
+            <li>Inspektionen und Wartungsarbeiten aller Marken</li>
+            <li>Fehlerdiagnose mit modernen Messgeräten</li>
+            <li>Motor- und Getriebeinstandsetzung</li>
+            <li>Brems-, Fahr- und Lenkungsarbeiten</li>
+            <li>Klimaanlageservice und Elektrik</li>
+          </ul>
+        </details>
         <a class="btn" href="#bewerbung">Jetzt bewerben</a>
       </div>
 
@@ -626,13 +646,16 @@
         <div class="job-type">Vollzeit / Führungsposition</div>
         <h3>KFZ Meister (m/w/d)</h3>
         <p>Du trägst Meisterbrief und möchtest Verantwortung übernehmen? Führe unser Team und bringe deine Erfahrung ein.</p>
-        <ul class="list-check">
-          <li>Technische Leitung und Qualitätskontrolle</li>
-          <li>Fachliche Führung und Ausbildung von Azubis</li>
-          <li>Beratung und Kostenvoranschläge für Kunden</li>
-          <li>Koordination von HU/AU-Terminen (TÜV)</li>
-          <li>Weiterentwicklung unserer Werkstattprozesse</li>
-        </ul>
+        <details class="job-details">
+          <summary>Deine Aufgaben</summary>
+          <ul class="list-check">
+            <li>Technische Leitung und Qualitätskontrolle</li>
+            <li>Fachliche Führung und Ausbildung von Azubis</li>
+            <li>Beratung und Kostenvoranschläge für Kunden</li>
+            <li>Koordination von HU/AU-Terminen (TÜV)</li>
+            <li>Weiterentwicklung unserer Werkstattprozesse</li>
+          </ul>
+        </details>
         <a class="btn" href="#bewerbung">Jetzt bewerben</a>
       </div>
 
@@ -696,13 +719,16 @@
         <div class="job-type">Vollzeit / Teilzeit</div>
         <h3>Karosseriebauer (m/w/d)</h3>
         <p>Präzisionsarbeit an Karosserie und Rahmen – du stellst sicher, dass jedes Fahrzeug nach einem Schaden besser denn je aussieht.</p>
-        <ul class="list-check">
-          <li>Instandsetzung von Unfallschäden aller Art</li>
-          <li>Richt- und Schweißarbeiten an Karosserien</li>
-          <li>Austausch und Montage von Karosserieteilen</li>
-          <li>Vermessungsarbeiten mit Richtbank</li>
-          <li>Vor- und Nachbereitung für Lackierarbeiten</li>
-        </ul>
+        <details class="job-details">
+          <summary>Deine Aufgaben</summary>
+          <ul class="list-check">
+            <li>Instandsetzung von Unfallschäden aller Art</li>
+            <li>Richt- und Schweißarbeiten an Karosserien</li>
+            <li>Austausch und Montage von Karosserieteilen</li>
+            <li>Vermessungsarbeiten mit Richtbank</li>
+            <li>Vor- und Nachbereitung für Lackierarbeiten</li>
+          </ul>
+        </details>
         <a class="btn" href="#bewerbung">Jetzt bewerben</a>
       </div>
 
@@ -712,13 +738,16 @@
         <div class="job-type">Vollzeit / Führungsposition</div>
         <h3>Karosseriebaumeister (m/w/d)</h3>
         <p>Mit deinem Meistertitel übernimmst du Verantwortung in unserem Karosseriebau – fachlich, technisch und in der Nachwuchsförderung.</p>
-        <ul class="list-check">
-          <li>Leitung und Qualitätsprüfung im Karosseriebau</li>
-          <li>Schadensbeurteilung und Kalkulation</li>
-          <li>Kommunikation mit Versicherungen und Gutachtern</li>
-          <li>Ausbildung von Karosseriebauer-Azubis</li>
-          <li>Optimierung von Reparaturabläufen</li>
-        </ul>
+        <details class="job-details">
+          <summary>Deine Aufgaben</summary>
+          <ul class="list-check">
+            <li>Leitung und Qualitätsprüfung im Karosseriebau</li>
+            <li>Schadensbeurteilung und Kalkulation</li>
+            <li>Kommunikation mit Versicherungen und Gutachtern</li>
+            <li>Ausbildung von Karosseriebauer-Azubis</li>
+            <li>Optimierung von Reparaturabläufen</li>
+          </ul>
+        </details>
         <a class="btn" href="#bewerbung">Jetzt bewerben</a>
       </div>
 
