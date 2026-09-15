@@ -86,7 +86,7 @@ $telefon  = h($_POST['telefon']  ?? '');
 $betreff  = h($_POST['betreff']  ?? '');
 $nachricht = trim($_POST['nachricht'] ?? '');
 
-if ($vorname === '' || $nachname === '' || $email === '' || $betreff === '' || $nachricht === '') {
+if ($vorname === '' || $nachname === '' || $email === '' || $telefon === '' || $betreff === '') {
   fail('Bitte fülle alle Pflichtfelder aus.');
 }
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -94,28 +94,28 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 $stelle = $STELLEN[$betreff] ?? $betreff;
 
-/* ─── Lebenslauf (Pflicht) prüfen & einlesen ────────────────────── */
+/* ─── Lebenslauf (optional) prüfen & einlesen ───────────────────── */
 $attachments = [];
 
-if (empty($_FILES['cv']) || ($_FILES['cv']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
-  fail('Bitte lade deinen Lebenslauf hoch.');
+$cvUploaded = !empty($_FILES['cv']) && ($_FILES['cv']['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE;
+if ($cvUploaded) {
+  $cv = $_FILES['cv'];
+  if ($cv['error'] !== UPLOAD_ERR_OK || !is_uploaded_file($cv['tmp_name'])) {
+    fail('Der Lebenslauf konnte nicht verarbeitet werden. Bitte versuche es erneut.');
+  }
+  if ($cv['size'] > MAX_CV_BYTES) {
+    fail('Der Lebenslauf ist zu groß (max. 10 MB).');
+  }
+  $cvExt = strtolower(pathinfo($cv['name'], PATHINFO_EXTENSION));
+  if (!in_array($cvExt, ALLOWED_CV, true)) {
+    fail('Lebenslauf: Nur PDF, DOC oder DOCX erlaubt.');
+  }
+  $attachments[] = [
+    'name' => 'Lebenslauf_' . preg_replace('/[^A-Za-z0-9._-]/', '_', $vorname . '_' . $nachname) . '.' . $cvExt,
+    'mime' => mimeFromExt($cvExt),
+    'data' => file_get_contents($cv['tmp_name']),
+  ];
 }
-$cv = $_FILES['cv'];
-if ($cv['error'] !== UPLOAD_ERR_OK || !is_uploaded_file($cv['tmp_name'])) {
-  fail('Der Lebenslauf konnte nicht verarbeitet werden. Bitte versuche es erneut.');
-}
-if ($cv['size'] > MAX_CV_BYTES) {
-  fail('Der Lebenslauf ist zu groß (max. 10 MB).');
-}
-$cvExt = strtolower(pathinfo($cv['name'], PATHINFO_EXTENSION));
-if (!in_array($cvExt, ALLOWED_CV, true)) {
-  fail('Lebenslauf: Nur PDF, DOC oder DOCX erlaubt.');
-}
-$attachments[] = [
-  'name' => 'Lebenslauf_' . preg_replace('/[^A-Za-z0-9._-]/', '_', $vorname . '_' . $nachname) . '.' . $cvExt,
-  'mime' => mimeFromExt($cvExt),
-  'data' => file_get_contents($cv['tmp_name']),
-];
 
 /* ─── Weitere Dokumente (optional, mehrere) ─────────────────────── */
 if (!empty($_FILES['docs']) && is_array($_FILES['docs']['name'])) {
@@ -160,7 +160,7 @@ $textLines = [
   '',
   'Nachricht / Anschreiben:',
   '────────────────────────',
-  $nachricht,
+  ($nachricht !== '' ? $nachricht : '— (keine Angabe, Schnellbewerbung)'),
   '',
   '────────────────────────',
   'Anhänge: ' . count($attachments) . ' Datei(en)',

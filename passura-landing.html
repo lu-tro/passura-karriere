@@ -17,6 +17,30 @@
   <!-- Schnellere Video-/Thumbnail-Ladezeit -->
   <link rel="preconnect" href="https://i.ytimg.com" />
   <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+
+  <!-- ═══════════════════════════════════════════════════
+       META (FACEBOOK) PIXEL
+       WICHTIG: DEINE_PIXEL_ID unten an 2 Stellen (Script +
+       noscript) durch die echte Pixel-ID aus dem Meta Events
+       Manager ersetzen, bevor die Seite live via Ads läuft.
+       Ohne echte ID kann Facebook die Anzeigen NICHT auf
+       tatsächliche Bewerber optimieren.
+  ═══════════════════════════════════════════════════ -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'DEINE_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=DEINE_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+
   <style>
     /* ─── Reset & Base ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -491,16 +515,19 @@
 
       <!-- Left: Text -->
       <div>
-        <div class="hero-badge">Meisterbetrieb seit 1980</div>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin-bottom:1.4rem;">
+          <div class="hero-badge" style="margin-bottom:0;">Meisterbetrieb seit 1980</div>
+          <div class="hero-badge" style="margin-bottom:0;">DEKRA-anerkannter Prüfstützpunkt</div>
+        </div>
         <h1 class="hero-headline">
-          Heroes?<br>
-          <span class="accent">Findet man</span><br>
-          bei uns.
+          KFZ Mechatroniker &<br>
+          <span class="accent">Karosseriebauer (m/w/d)</span><br>
+          gesucht in Geldern
         </h1>
         <p class="hero-sub">
-          PASSURA Automobile ist ein familiengeführter Meisterbetrieb in Geldern –
-          kompetent in Inspektion, Reparatur, Unfallschaden und Karosseriebau
-          für alle Fabrikate seit über 40 Jahren.
+          Heroes findet man bei uns: PASSURA Automobile ist ein familiengeführter
+          Meisterbetrieb – kompetent in Inspektion, Reparatur, Unfallschaden und
+          Karosseriebau für alle Fabrikate seit über 40 Jahren.
         </p>
         <div class="hero-cta">
           <a class="btn" href="#bewerbung">Jetzt bewerben</a>
@@ -724,7 +751,7 @@
       <div class="section-tag" style="justify-content:center;">Bewerbung</div>
       <div class="section-divider" style="margin:1.2rem auto 1.8rem;"></div>
       <h2>Deine Bewerbung bei<br><span class="accent">PASSURA Automobile</span></h2>
-      <p>Schick uns deine Unterlagen direkt hier. Wir melden uns schnellstmöglich bei dir.</p>
+      <p>Name, Telefon und gewünschte Stelle reichen für den Anfang – Lebenslauf und Nachricht kannst du optional ergänzen oder einfach nachreichen. Wir melden uns schnellstmöglich bei dir.</p>
     </div>
 
     <div class="form-wrap fade-in">
@@ -761,8 +788,8 @@
                    autocorrect="off" spellcheck="false" enterkeyhint="next" />
           </div>
           <div class="field">
-            <label for="telefon">Telefon / Mobil</label>
-            <input type="tel" id="telefon" name="telefon" placeholder="0176 12345678"
+            <label for="telefon">Telefon / Mobil <span class="req">*</span></label>
+            <input type="tel" id="telefon" name="telefon" placeholder="0176 12345678" required
                    autocomplete="tel" inputmode="tel" enterkeyhint="next" />
           </div>
         </div>
@@ -782,19 +809,19 @@
 
         <!-- Nachricht -->
         <div class="field">
-          <label for="nachricht">Nachricht / Anschreiben <span class="req">*</span></label>
-          <textarea id="nachricht" name="nachricht" placeholder="Erzähl uns kurz von dir – deine Erfahrungen, deine Motivation und wann du frühestens starten könntest …" required></textarea>
+          <label for="nachricht">Nachricht / Anschreiben <span style="color:var(--muted); font-weight:400;">(optional)</span></label>
+          <textarea id="nachricht" name="nachricht" placeholder="Optional: Erzähl uns kurz von dir – oder lass es leer, wir rufen dich einfach an …"></textarea>
         </div>
 
         <!-- Lebenslauf Upload -->
         <div class="field">
-          <label>Lebenslauf <span class="req">*</span></label>
+          <label>Lebenslauf <span style="color:var(--muted); font-weight:400;">(optional)</span></label>
           <div class="upload-zone" id="cvZone">
-            <input type="file" id="cvFile" name="cv" accept=".pdf,.doc,.docx" required aria-label="Lebenslauf hochladen" />
+            <input type="file" id="cvFile" name="cv" accept=".pdf,.doc,.docx" aria-label="Lebenslauf hochladen" />
             <div class="upload-content">
               <div class="upload-icon">📄</div>
               <div class="upload-text"><strong>Lebenslauf auswählen</strong> oder hierher ziehen</div>
-              <div class="upload-hint">PDF, DOC oder DOCX · max. 10 MB</div>
+              <div class="upload-hint">PDF, DOC oder DOCX · max. 10 MB · kannst du auch später nachreichen</div>
               <div class="file-name" style="margin-top:.5rem; font-size:.85rem; color:var(--orange);"></div>
             </div>
           </div>
@@ -871,7 +898,6 @@
     </div>
     <ul class="footer-links">
       <li><a href="https://www.passura.de/imprint" target="_blank" rel="noopener">Impressum</a></li>
-      <li><a href="https://www.passura.de/" target="_blank" rel="noopener">Zur Webseite</a></li>
     </ul>
   </div>
 </footer>
@@ -997,6 +1023,7 @@
 
       if (res.ok && data.ok) {
         // Erfolg
+        if (typeof fbq === 'function') { fbq('track', 'Lead'); }
         form.style.display = 'none';
         document.getElementById('successMsg').classList.add('show');
         document.getElementById('bewerbung').scrollIntoView({ behavior: 'smooth' });
