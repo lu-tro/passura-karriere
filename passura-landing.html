@@ -240,6 +240,21 @@
     .section-intro h2 { margin-bottom: 1rem; }
     .section-intro p { font-size: 1.05rem; }
 
+    /* ─── Bereichs-Accordion (Fahrzeugtechnik / Karosseriebau) ───────── */
+    .sec-acc-header { cursor: pointer; -webkit-user-select: none; user-select: none; }
+    .sec-acc-header .section-tag::after {
+      content: '+'; font-size: 1.05rem; line-height: 1; margin-left: .25rem; font-weight: 400;
+    }
+    .sec-acc-header[aria-expanded="true"] .section-tag::after { content: '–'; }
+    .sec-acc-header[aria-expanded="false"] { margin-bottom: 0; }
+    .sec-acc-header:hover .section-tag { color: #ff8c26; }
+    .sec-acc-header:focus-visible { outline: 2px solid var(--orange); outline-offset: 8px; border-radius: 8px; }
+    .sec-acc-panel[hidden] { display: none; }
+    .section-lead {
+      max-width: 680px; margin: 0 auto 3.5rem;
+      font-size: 1.05rem; text-align: center;
+    }
+
     /* ─── Job Cards ─────────────────────────────────────────────────── */
     .job-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
     @media (max-width: 700px) { .job-grid { grid-template-columns: 1fr; } }
@@ -597,16 +612,20 @@
 <section id="mechatroniker">
   <div class="container">
 
-    <div class="section-intro fade-in">
+    <div class="section-intro sec-acc-header fade-in" role="button" tabindex="0"
+         aria-expanded="false" aria-controls="panel-mechatroniker">
       <div class="section-tag">Fahrzeugtechnik</div>
       <div class="section-divider"></div>
       <h2>KFZ Mechatroniker &<br><span class="accent">KFZ Meister (m/w/d)</span></h2>
-      <p>
+    </div>
+
+    <div class="sec-acc-panel" id="panel-mechatroniker" hidden>
+
+      <p class="section-lead">
         Werde Teil unseres technischen Teams und betreue Fahrzeuge aller Marken –
         von der Inspektion über Diagnose bis hin zur komplexen Motorinstandsetzung.
         Bei PASSURA findest du einen Platz, an dem dein Können zählt.
       </p>
-    </div>
 
     <div class="section-video fade-in">
       <div class="video-wrap" id="video-mechatroniker" data-yt="G0TsQS8SiAc"
@@ -683,6 +702,7 @@
       </div>
     </div>
 
+    </div>
   </div>
 </section>
 
@@ -693,16 +713,20 @@
 <section id="karosserie">
   <div class="container">
 
-    <div class="section-intro fade-in">
+    <div class="section-intro sec-acc-header fade-in" role="button" tabindex="0"
+         aria-expanded="false" aria-controls="panel-karosserie">
       <div class="section-tag">Karosseriebau</div>
       <div class="section-divider"></div>
       <h2>Karosseriebauer &<br><span class="accent">Karosseriebaumeister (m/w/d)</span></h2>
-      <p>
+    </div>
+
+    <div class="sec-acc-panel" id="panel-karosserie" hidden>
+
+      <p class="section-lead">
         Unser Karosserie-Team bringt beschädigte Fahrzeuge wieder in Topform –
         präzise, fachgerecht und mit Liebe zum Detail. Ob Unfallschaden, Blecharbeit
         oder kompletter Aufbau: hier kannst du zeigen, was du kannst.
       </p>
-    </div>
 
     <div class="section-video fade-in">
       <div class="video-wrap" id="video-karosserie" data-yt="G0TsQS8SiAc"
@@ -778,6 +802,7 @@
       </div>
     </div>
 
+    </div>
   </div>
 </section>
 
@@ -971,6 +996,35 @@
       var isOpen = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
       panel.hidden = isOpen;
+    });
+  });
+
+  // ── Bereichs-Accordion (Fahrzeugtechnik / Karosseriebau) ──
+  function toggleSection(header, forceOpen) {
+    var panel = document.getElementById(header.getAttribute('aria-controls'));
+    if (!panel) return;
+    var isOpen = header.getAttribute('aria-expanded') === 'true';
+    var open = typeof forceOpen === 'boolean' ? forceOpen : !isOpen;
+    header.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.hidden = !open;
+    if (open) {
+      panel.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('visible'); });
+    }
+  }
+
+  document.querySelectorAll('.sec-acc-header').forEach(function (header) {
+    header.addEventListener('click', function () { toggleSection(header); });
+    header.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleSection(header); }
+    });
+  });
+
+  // Anker-Links (z.B. "Offene Stellen") oeffnen den Zielbereich automatisch
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var target = document.getElementById(a.getAttribute('href').slice(1));
+      var header = target && target.querySelector('.sec-acc-header');
+      if (header) toggleSection(header, true);
     });
   });
 
