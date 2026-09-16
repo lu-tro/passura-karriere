@@ -453,28 +453,8 @@
     /* Footer */
     .footer-inner { justify-content: center; text-align: center; }
 
-    /* ─── Sticky Mobile-CTA (Daumen-Bereich) ────────────────────────── */
-    .mobile-cta {
-      display: none;
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
-      padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
-      background: rgba(17,19,21,.96);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(232,115,10,.25);
-      box-shadow: 0 -6px 24px rgba(0,0,0,.4);
-      transform: translateY(110%);
-      transition: transform .3s ease;
-    }
-    .mobile-cta.show { transform: translateY(0); }
-    .mobile-cta .btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; padding: 1rem; font-size: 1.05rem; min-height: 54px;
-    }
-
     /* ─── Mobile-Feinschliff (≤640px) ───────────────────────────────── */
     @media (max-width: 640px) {
-      .mobile-cta { display: block; }
-      body { padding-bottom: 76px; } /* Platz für Sticky-CTA, verdeckt nichts */
 
       .container { padding: 0 1.1rem; }
       section { padding: 3.5rem 0; }
@@ -945,12 +925,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════
-     STICKY MOBILE-CTA (nur Smartphone)
-═══════════════════════════════════════════════════ -->
-<div class="mobile-cta" id="mobileCta">
-  <a class="btn" href="#bewerbung">Jetzt in 2 Minuten bewerben →</a>
-</div>
 
 
 <!-- ═══════════════════════════════════════════════════
@@ -1046,20 +1020,6 @@
       if (header) toggleSection(header, true);
     });
   });
-
-  // ── Sticky Mobile-CTA: nach Hero zeigen, im Formular ausblenden ──
-  (function () {
-    const cta = document.getElementById('mobileCta');
-    const hero = document.getElementById('hero');
-    const formSec = document.getElementById('bewerbung');
-    if (!cta || !hero || !formSec) return;
-    let pastHero = false, inForm = false;
-    const update = () => cta.classList.toggle('show', pastHero && !inForm);
-    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; update(); },
-      { threshold: 0, rootMargin: '-40% 0px 0px 0px' }).observe(hero);
-    new IntersectionObserver(([e]) => { inForm = e.isIntersecting; update(); },
-      { threshold: 0.08 }).observe(formSec);
-  })();
 
   // ── Scroll fade-in ────────────────────────────────
   const observer = new IntersectionObserver(
