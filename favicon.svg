@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="PASSURA">
+  <rect width="32" height="32" rx="7" fill="#111315"/>
+  <path d="M9 6h7.2a6.4 6.4 0 0 1 0 12.8H14V26h-4z" fill="#e8730a"/>
+  <circle cx="16.6" cy="12.4" r="2.9" fill="#111315"/>
+</svg>

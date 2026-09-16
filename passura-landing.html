@@ -14,6 +14,11 @@
   <meta property="og:image" content="https://i.ytimg.com/vi/G0TsQS8SiAc/maxresdefault.jpg" />
   <meta property="og:locale" content="de_DE" />
 
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" sizes="32x32" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon-180.png" />
+
   <!-- Schnellere Video-/Thumbnail-Ladezeit -->
   <link rel="preconnect" href="https://i.ytimg.com" />
   <link rel="preconnect" href="https://www.youtube-nocookie.com" />
@@ -250,13 +255,27 @@
 
     /* ─── Bereichs-Accordion (Fahrzeugtechnik / Karosseriebau) ───────── */
     .sec-acc-header { cursor: pointer; -webkit-user-select: none; user-select: none; }
-    .sec-acc-header .section-tag::after {
-      content: '+'; font-size: 1.05rem; line-height: 1; margin-left: .25rem; font-weight: 400;
-    }
-    .sec-acc-header[aria-expanded="true"] .section-tag::after { content: '–'; }
     .sec-acc-header[aria-expanded="false"] { margin-bottom: 0; }
     .sec-acc-header:hover .section-tag { color: #ff8c26; }
     .sec-acc-header:focus-visible { outline: 2px solid var(--orange); outline-offset: 8px; border-radius: 8px; }
+    .sec-acc-cue {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      margin-top: 1.5rem; min-height: 44px; padding: .7rem 1.5rem;
+      background: rgba(232,115,10,.08);
+      border: 1px solid rgba(232,115,10,.3);
+      border-radius: var(--radius);
+      color: var(--orange); font-weight: 700; font-size: .85rem;
+      text-transform: uppercase; letter-spacing: .05em;
+      transition: background .2s, border-color .2s;
+    }
+    .sec-acc-header:hover .sec-acc-cue {
+      background: rgba(232,115,10,.16); border-color: rgba(232,115,10,.55);
+    }
+    .sec-acc-header[aria-expanded="false"] .cue-auf { display: none; }
+    .sec-acc-header[aria-expanded="true"]  .cue-zu  { display: none; }
+    .chev { transition: transform .2s; flex-shrink: 0; }
+    .sec-acc-header[aria-expanded="true"] .chev,
+    .job-acc-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
     .sec-acc-panel[hidden] { display: none; }
     .section-lead {
       max-width: 680px; margin: 0 auto 3.5rem;
@@ -308,11 +327,10 @@
       font-family: inherit; font-weight: 700; font-size: .82rem;
       text-transform: uppercase; letter-spacing: .05em;
       padding: .7rem 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
       transition: background .2s, border-color .2s;
     }
     .job-acc-btn:hover { background: rgba(232,115,10,.16); border-color: rgba(232,115,10,.5); }
-    .job-acc-btn::after { content: ' +'; font-size: 1.05rem; font-weight: 400; }
-    .job-acc-btn[aria-expanded="true"]::after { content: ' –'; }
     .job-acc-panel[hidden] { display: none; }
     .job-acc-panel .list-check { margin-top: 1rem; margin-bottom: .2rem; }
 
@@ -614,6 +632,11 @@
       <div class="section-tag">Fahrzeugtechnik</div>
       <div class="section-divider"></div>
       <h2>KFZ Mechatroniker &<br><span class="accent">KFZ Meister (m/w/d)</span></h2>
+      <span class="sec-acc-cue">
+        <span class="cue-zu">2 offene Stellen ansehen</span>
+        <span class="cue-auf">Bereich schließen</span>
+        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
     </div>
 
     <div class="sec-acc-panel" id="panel-mechatroniker" hidden>
@@ -648,7 +671,7 @@
         <h3>KFZ Mechatroniker (m/w/d)</h3>
         <p>Du liebst Autos, denkst analytisch und liebst es, wenn der Motor wieder läuft? Dann bist du bei uns genau richtig.</p>
         <div class="job-acc">
-          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben</button>
+          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
           <div class="job-acc-panel" hidden>
           <ul class="list-check">
             <li>Inspektionen und Wartungsarbeiten aller Marken</li>
@@ -669,7 +692,7 @@
         <h3>KFZ Meister (m/w/d)</h3>
         <p>Du trägst Meisterbrief und möchtest Verantwortung übernehmen? Führe unser Team und bringe deine Erfahrung ein.</p>
         <div class="job-acc">
-          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben</button>
+          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
           <div class="job-acc-panel" hidden>
           <ul class="list-check">
             <li>Technische Leitung und Qualitätskontrolle</li>
@@ -715,6 +738,11 @@
       <div class="section-tag">Karosseriebau</div>
       <div class="section-divider"></div>
       <h2>Karosseriebauer &<br><span class="accent">Karosseriebaumeister (m/w/d)</span></h2>
+      <span class="sec-acc-cue">
+        <span class="cue-zu">2 offene Stellen ansehen</span>
+        <span class="cue-auf">Bereich schließen</span>
+        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
     </div>
 
     <div class="sec-acc-panel" id="panel-karosserie" hidden>
@@ -749,7 +777,7 @@
         <h3>Karosseriebauer (m/w/d)</h3>
         <p>Präzisionsarbeit an Karosserie und Rahmen – du stellst sicher, dass jedes Fahrzeug nach einem Schaden besser denn je aussieht.</p>
         <div class="job-acc">
-          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben</button>
+          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
           <div class="job-acc-panel" hidden>
           <ul class="list-check">
             <li>Instandsetzung von Unfallschäden aller Art</li>
@@ -770,7 +798,7 @@
         <h3>Karosseriebaumeister (m/w/d)</h3>
         <p>Mit deinem Meistertitel übernimmst du Verantwortung in unserem Karosseriebau – fachlich, technisch und in der Nachwuchsförderung.</p>
         <div class="job-acc">
-          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben</button>
+          <button type="button" class="job-acc-btn" aria-expanded="false">Deine Aufgaben <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
           <div class="job-acc-panel" hidden>
           <ul class="list-check">
             <li>Leitung und Qualitätsprüfung im Karosseriebau</li>
