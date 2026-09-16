@@ -89,7 +89,7 @@
     }
 
     /* ─── Typography ────────────────────────────────────────────────── */
-    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; }
+    h1 { font-size: clamp(1.95rem, 4.6vw, 3.2rem); font-weight: 800; line-height: 1.12; }
     h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.2; }
     h3 { font-size: 1.25rem; font-weight: 600; }
     p  { color: #c8d0d8; }
@@ -171,11 +171,19 @@
       padding: .4rem 1rem; border-radius: 20px; margin-bottom: 1.4rem;
     }
     .hero-badge::before { content: '⚙'; font-size: .85rem; }
+    .hero-badge--plain::before { content: none; }
 
-    .hero-headline { margin-bottom: 1.2rem; }
+    .hero-headline { margin-bottom: .55rem; }
+    .hero-kicker {
+      font-size: .95rem; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase; color: #c8d0d8; margin-bottom: 1.4rem;
+    }
     .hero-sub { font-size: 1.15rem; color: #96a0aa; margin-bottom: 2rem; max-width: 480px; }
 
     .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Teamfoto: auf dem Desktop Hintergrund, mobil echtes Bild im Inhalt */
+    .hero-photo { display: none; }
 
     .hero-stats {
       display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem;
@@ -352,7 +360,7 @@
       width: 100%;
     }
     .field input::placeholder,
-    .field textarea::placeholder { color: #4a5568; }
+    .field textarea::placeholder { color: var(--muted); }
     .field input:focus,
     .field textarea:focus,
     .field select:focus {
@@ -381,7 +389,7 @@
     .upload-icon { font-size: 2rem; margin-bottom: .5rem; }
     .upload-text { font-size: .9rem; color: #96a0aa; }
     .upload-text strong { color: var(--orange); }
-    .upload-hint { font-size: .78rem; color: #4a5568; margin-top: .3rem; }
+    .upload-hint { font-size: .78rem; color: var(--muted); margin-top: .3rem; }
 
     .form-submit { display: flex; justify-content: center; margin-top: 2rem; }
     .btn-submit {
@@ -391,9 +399,9 @@
 
     /* Privacy notice */
     .privacy-note {
-      text-align: center; font-size: .8rem; color: #4a5568; margin-top: 1rem;
+      text-align: center; font-size: .8rem; color: var(--muted); margin-top: 1rem;
     }
-    .privacy-note a { color: var(--muted); text-decoration: underline; }
+    .privacy-note a { color: #c8d0d8; text-decoration: underline; }
 
     /* ─── Success Message ───────────────────────────────────────────── */
     .success-msg {
@@ -462,10 +470,16 @@
       /* Hero: volle, aber nicht überdimensionierte Höhe trotz mobiler Adressleiste */
       #hero {
         min-height: auto; padding-top: 100px; padding-bottom: 2.5rem;
-        /* Foto vollständig zeigen (alle im Team sichtbar), nicht beschneiden, immer mittig */
-        background-size: auto, contain;
-        background-position: 0 0, center center;
-        background-repeat: no-repeat, no-repeat;
+        /* Kein Hintergrundfoto: es lief als schmales Band hinter der Headline.
+           Mobil steht das Team stattdessen als echtes Bild im Inhalt (.hero-photo). */
+        background-image: linear-gradient(135deg, #0d0f11 0%, #14171a 55%, #1c2126 100%);
+        background-size: auto;
+        background-position: 0 0;
+      }
+      .hero-photo {
+        display: block; width: 100%; height: auto;
+        margin-top: 2.2rem; border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.08);
       }
       .hero-content { padding: 1rem 0; }
       .hero-sub { font-size: 1.05rem; }
@@ -533,13 +547,13 @@
       <div>
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin-bottom:1.4rem;">
           <div class="hero-badge" style="margin-bottom:0;">Meisterbetrieb seit 1980</div>
-          <div class="hero-badge" style="margin-bottom:0;">DEKRA-anerkannter Prüfstützpunkt</div>
+          <div class="hero-badge hero-badge--plain" style="margin-bottom:0;">DEKRA-Prüfstützpunkt</div>
         </div>
         <h1 class="hero-headline">
-          KFZ Mechatroniker &<br>
-          <span class="accent">Karosseriebauer (m/w/d)</span><br>
-          gesucht in Geldern
+          KFZ-Mechatroniker &<br>
+          <span class="accent">Karosseriebauer</span>
         </h1>
+        <p class="hero-kicker">(m/w/d) gesucht in Geldern</p>
         <p class="hero-sub">
           Heroes findet man bei uns: PASSURA Automobile ist ein familiengeführter
           Meisterbetrieb – kompetent in Inspektion, Reparatur, Unfallschaden und
@@ -549,6 +563,9 @@
           <a class="btn" href="#bewerbung">Jetzt bewerben</a>
           <a class="btn btn-outline" href="#mechatroniker">Offene Stellen</a>
         </div>
+        <img class="hero-photo" src="team.jpg" width="1600" height="900"
+             alt="Das Team von PASSURA Automobile vor der Werkstatt in Geldern"
+             loading="lazy" decoding="async">
         <div class="hero-stats">
           <div>
             <div class="stat-num">46+</div>
