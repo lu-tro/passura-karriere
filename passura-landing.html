@@ -1002,7 +1002,7 @@
   // ── Bereichs-Accordion (Fahrzeugtechnik / Karosseriebau) ──
   function toggleSection(header, forceOpen) {
     var panel = document.getElementById(header.getAttribute('aria-controls'));
-    if (!panel) return;
+    if (!panel) return false;
     var isOpen = header.getAttribute('aria-expanded') === 'true';
     var open = typeof forceOpen === 'boolean' ? forceOpen : !isOpen;
     header.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -1010,12 +1010,31 @@
     if (open) {
       panel.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('visible'); });
     }
+    return open;
+  }
+
+  /* Beim Oeffnen den Bereichstitel direkt unter die fixierte Nav scrollen */
+  function scrollHeaderUnderNav(header) {
+    var nav = document.querySelector('nav');
+    var navH = nav ? nav.getBoundingClientRect().height : 0;
+    header.classList.add('visible');
+    /* offsetTop statt getBoundingClientRect: Layout-Position ist unabhaengig
+       vom fade-in-Transform, der die Messung sonst um 24px verschiebt. */
+    var y = 0, el = header;
+    while (el) { y += el.offsetTop; el = el.offsetParent; }
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: Math.max(y - navH - 14, 0), behavior: reduce ? 'auto' : 'smooth' });
   }
 
   document.querySelectorAll('.sec-acc-header').forEach(function (header) {
-    header.addEventListener('click', function () { toggleSection(header); });
+    header.addEventListener('click', function () {
+      if (toggleSection(header)) scrollHeaderUnderNav(header);
+    });
     header.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleSection(header); }
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (toggleSection(header)) scrollHeaderUnderNav(header);
+      }
     });
   });
 
