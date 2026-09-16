@@ -190,13 +190,6 @@
     /* Teamfoto: auf dem Desktop Hintergrund, mobil echtes Bild im Inhalt */
     .hero-photo { display: none; }
 
-    .hero-stats {
-      display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .stat-num { font-size: 2rem; font-weight: 800; color: var(--orange); }
-    .stat-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-
     /* Video wrapper */
     .video-wrap {
       position: relative; border-radius: 12px; overflow: hidden;
@@ -461,7 +454,6 @@
     .hero-badge { margin-left: auto; margin-right: auto; }
     .hero-sub { margin-left: auto; margin-right: auto; }
     .hero-cta { justify-content: center; }
-    .hero-stats { justify-content: center; }
 
     /* Section-Intros */
     .section-intro { text-align: center; margin-left: auto; margin-right: auto; }
@@ -510,11 +502,6 @@
       .hero-cta .btn { width: 100%; text-align: center; min-height: 52px;
         display: flex; align-items: center; justify-content: center; }
 
-      /* Stats kompakter, sauber umbrechend */
-      .hero-stats { gap: 1.2rem 1.8rem; margin-top: 2rem; padding-top: 1.5rem; flex-wrap: wrap; }
-      .stat-num { font-size: 1.6rem; }
-      .hero-stats > div { flex: 1 1 30%; min-width: 90px; }
-
       /* Nav-CTA platzsparender neben dem Logo, Header trotzdem groß */
       .nav-inner { padding: 1.1rem 1.1rem; }
       .nav-logo { font-size: 1.35rem; }
@@ -531,7 +518,6 @@
     /* Sehr schmale Geräte (≤360px) */
     @media (max-width: 360px) {
       .hero-headline { font-size: 2rem; }
-      .stat-label { font-size: .72rem; }
     }
   </style>
 </head>
@@ -584,20 +570,6 @@
         <img class="hero-photo" src="team.jpg" width="1600" height="900"
              alt="Das Team von PASSURA Automobile vor der Werkstatt in Geldern"
              loading="lazy" decoding="async">
-        <div class="hero-stats">
-          <div>
-            <div class="stat-num">46+</div>
-            <div class="stat-label">Jahre Erfahrung</div>
-          </div>
-          <div>
-            <div class="stat-num">alle</div>
-            <div class="stat-label">Fabrikate</div>
-          </div>
-          <div>
-            <div class="stat-num">Geldern</div>
-            <div class="stat-label">Gottlieb-Daimler-Str. 17</div>
-          </div>
-        </div>
       </div>
 
       <!-- Right: Video -->
