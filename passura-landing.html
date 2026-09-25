@@ -51,8 +51,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --orange:   #e8730a;
-      --orange-d: #c45f05;
+      /* Akzent aus der Fahrzeugbeschriftung: Signalgelb auf Schwarz/Silber */
+      --accent:    #d4e000;
+      --accent-d:  #b9c400;
+      --on-accent: #111315;   /* Schrift auf gefuellten Akzentflaechen */
       --dark:     #111315;
       --dark2:    #1a1d20;
       --dark3:    #22262b;
@@ -75,7 +77,7 @@
       color: var(--light);
       line-height: 1.65;
       overflow-x: hidden;
-      -webkit-tap-highlight-color: rgba(232,115,10,.25);
+      -webkit-tap-highlight-color: rgba(212,224,0,.25);
     }
 
     /* Anker nicht hinter der fixierten Nav verstecken */
@@ -83,7 +85,7 @@
 
     /* Touch: keine "klebenden" Hover-Effekte – Lift-Effekte nur mit echtem Hover-Gerät */
     @media (hover: none) {
-      .btn:hover { transform: none; box-shadow: 0 2px 12px rgba(232,115,10,.35); }
+      .btn:hover { transform: none; box-shadow: 0 2px 12px rgba(212,224,0,.35); }
       .job-card:hover { transform: none; }
     }
 
@@ -99,7 +101,7 @@
     h3 { font-size: 1.25rem; font-weight: 600; }
     p  { color: #c8d0d8; }
 
-    .accent { color: var(--orange); }
+    .accent { color: var(--accent); }
 
     /* ─── Utility ───────────────────────────────────────────────────── */
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
@@ -107,8 +109,8 @@
     .btn {
       display: inline-block;
       padding: .85rem 2.2rem;
-      background: var(--orange);
-      color: var(--white);
+      background: var(--accent);
+      color: var(--on-accent);
       font-weight: 700;
       font-size: .95rem;
       letter-spacing: .04em;
@@ -118,18 +120,18 @@
       border-radius: var(--radius);
       cursor: pointer;
       transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 2px 12px rgba(232,115,10,.35);
+      box-shadow: 0 2px 12px rgba(212,224,0,.35);
     }
-    .btn:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,115,10,.45); }
+    .btn:hover { background: var(--accent-d); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,224,0,.45); }
     .btn:active { transform: translateY(0); }
 
     .btn-outline {
       background: transparent;
-      border: 2px solid var(--orange);
-      color: var(--orange);
+      border: 2px solid var(--accent);
+      color: var(--accent);
       box-shadow: none;
     }
-    .btn-outline:hover { background: var(--orange); color: var(--white); }
+    .btn-outline:hover { background: var(--accent); color: var(--on-accent); }
 
     /* ─── Navigation ────────────────────────────────────────────────── */
     nav {
@@ -143,10 +145,10 @@
       max-width: 1100px; margin: 0 auto; padding: 1.35rem 1.5rem;
     }
     .nav-logo { font-weight: 800; font-size: 1.55rem; letter-spacing: .06em; text-decoration: none; color: var(--white); }
-    .nav-logo span { color: var(--orange); }
+    .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: #c8d0d8; text-decoration: none; font-size: .9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover { color: var(--accent); }
 
     @media (max-width: 640px) { .nav-links { display: none; } }
 
@@ -170,8 +172,8 @@
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: .5rem;
-      background: rgba(232,115,10,.12); border: 1px solid rgba(232,115,10,.3);
-      color: var(--orange); font-size: .8rem; font-weight: 700;
+      background: rgba(212,224,0,.12); border: 1px solid rgba(212,224,0,.3);
+      color: var(--accent); font-size: .8rem; font-weight: 700;
       letter-spacing: .1em; text-transform: uppercase;
       padding: .4rem 1rem; border-radius: 20px; margin-bottom: 1.4rem;
     }
@@ -195,7 +197,7 @@
       position: relative; border-radius: 12px; overflow: hidden;
       box-shadow: var(--shadow); background: var(--dark3);
       aspect-ratio: 16/9;
-      border: 1px solid rgba(232,115,10,.2);
+      border: 1px solid rgba(212,224,0,.2);
     }
     .video-wrap iframe { width: 100%; height: 100%; display: block; }
     .video-wrap[data-yt] { cursor: pointer; }
@@ -213,18 +215,18 @@
       color: var(--muted);
     }
     .play-icon {
-      width: 72px; height: 72px; background: var(--orange); border-radius: 50%;
+      width: 72px; height: 72px; background: var(--accent); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 0 0 0 rgba(232,115,10,.5);
+      box-shadow: 0 0 0 0 rgba(212,224,0,.5);
       animation: pulse 2s infinite;
     }
     .play-icon:hover { transform: scale(1.08); }
     .play-icon svg { margin-left: 5px; }
     @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(232,115,10,.5); }
-      70%  { box-shadow: 0 0 0 18px rgba(232,115,10,0); }
-      100% { box-shadow: 0 0 0 0 rgba(232,115,10,0); }
+      0%   { box-shadow: 0 0 0 0 rgba(212,224,0,.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(212,224,0,0); }
+      100% { box-shadow: 0 0 0 0 rgba(212,224,0,0); }
     }
 
     /* ─── Section Video (Platzhalter bei KFZ / Karosserie) ───────────── */
@@ -237,10 +239,10 @@
 
     .section-tag {
       display: inline-flex; align-items: center; gap: .5rem;
-      color: var(--orange); font-size: .8rem; font-weight: 700;
+      color: var(--accent); font-size: .8rem; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem;
     }
-    .section-tag::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--orange); }
+    .section-tag::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
 
     .section-intro { max-width: 680px; margin-bottom: 3.5rem; }
     .section-intro h2 { margin-bottom: 1rem; }
@@ -249,20 +251,20 @@
     /* ─── Bereichs-Accordion (Fahrzeugtechnik / Karosseriebau) ───────── */
     .sec-acc-header { cursor: pointer; -webkit-user-select: none; user-select: none; }
     .sec-acc-header[aria-expanded="false"] { margin-bottom: 0; }
-    .sec-acc-header:hover .section-tag { color: #ff8c26; }
-    .sec-acc-header:focus-visible { outline: 2px solid var(--orange); outline-offset: 8px; border-radius: 8px; }
+    .sec-acc-header:hover .section-tag { color: #e8f500; }
+    .sec-acc-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: 8px; }
     .sec-acc-cue {
       display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
       margin-top: 1.5rem; min-height: 44px; padding: .7rem 1.5rem;
-      background: rgba(232,115,10,.08);
-      border: 1px solid rgba(232,115,10,.3);
+      background: rgba(212,224,0,.08);
+      border: 1px solid rgba(212,224,0,.3);
       border-radius: var(--radius);
-      color: var(--orange); font-weight: 700; font-size: .85rem;
+      color: var(--accent); font-weight: 700; font-size: .85rem;
       text-transform: uppercase; letter-spacing: .05em;
       transition: background .2s, border-color .2s;
     }
     .sec-acc-header:hover .sec-acc-cue {
-      background: rgba(232,115,10,.16); border-color: rgba(232,115,10,.55);
+      background: rgba(212,224,0,.16); border-color: rgba(212,224,0,.55);
     }
     .sec-acc-header[aria-expanded="false"] .cue-auf { display: none; }
     .sec-acc-header[aria-expanded="true"]  .cue-zu  { display: none; }
@@ -285,27 +287,27 @@
       transition: border-color .2s, transform .2s, box-shadow .2s;
     }
     .job-card:hover {
-      border-color: rgba(232,115,10,.4);
+      border-color: rgba(212,224,0,.4);
       transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(232,115,10,.12);
+      box-shadow: 0 8px 32px rgba(212,224,0,.12);
     }
     .job-icon {
-      width: 48px; height: 48px; background: rgba(232,115,10,.12);
+      width: 48px; height: 48px; background: rgba(212,224,0,.12);
       border-radius: 10px; display: flex; align-items: center; justify-content: center;
       font-size: 1.5rem; margin-bottom: 1.2rem;
     }
     .job-card h3 { color: var(--white); margin-bottom: .5rem; }
     .job-card .job-type {
       display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--orange);
-      background: rgba(232,115,10,.1); border-radius: 4px;
+      text-transform: uppercase; color: var(--accent);
+      background: rgba(212,224,0,.1); border-radius: 4px;
       padding: .2rem .7rem; margin-bottom: 1rem;
     }
     .job-card p { font-size: .92rem; margin-bottom: 1.2rem; }
 
     .list-check { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.5rem; }
     .list-check li { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; color: #c8d0d8; }
-    .list-check li::before { content: '✓'; color: var(--orange); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+    .list-check li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
 
     /* ─── Job-Aufgaben Accordion (auf-/zuklappbar, am Anfang geschlossen) ──
        Bewusst KEIN natives <details>/<summary>: sobald summary ein eigenes
@@ -313,17 +315,17 @@
     .job-acc { margin-bottom: 1.4rem; }
     .job-acc-btn {
       width: 100%; min-height: 44px;
-      background: rgba(232,115,10,.08);
-      border: 1px solid rgba(232,115,10,.25);
+      background: rgba(212,224,0,.08);
+      border: 1px solid rgba(212,224,0,.25);
       border-radius: var(--radius);
-      color: var(--orange);
+      color: var(--accent);
       font-family: inherit; font-weight: 700; font-size: .82rem;
       text-transform: uppercase; letter-spacing: .05em;
       padding: .7rem 1rem; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: .5rem;
       transition: background .2s, border-color .2s;
     }
-    .job-acc-btn:hover { background: rgba(232,115,10,.16); border-color: rgba(232,115,10,.5); }
+    .job-acc-btn:hover { background: rgba(212,224,0,.16); border-color: rgba(212,224,0,.5); }
     .job-acc-panel[hidden] { display: none; }
     .job-acc-panel .list-check { margin-top: 1rem; margin-bottom: .2rem; }
 
@@ -354,7 +356,7 @@
 
     .field { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.4rem; }
     .field label { font-size: .85rem; font-weight: 600; color: #c8d0d8; letter-spacing: .03em; }
-    .field label .req { color: var(--orange); margin-left: 2px; }
+    .field label .req { color: var(--accent); margin-left: 2px; }
 
     .field input,
     .field textarea,
@@ -375,8 +377,8 @@
     .field input:focus,
     .field textarea:focus,
     .field select:focus {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(232,115,10,.15);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212,224,0,.15);
     }
     .field textarea { resize: vertical; min-height: 130px; }
     .field select option { background: var(--dark3); }
@@ -391,15 +393,15 @@
       transition: border-color .2s, background .2s;
       position: relative;
     }
-    .upload-zone:hover { border-color: var(--orange); background: rgba(232,115,10,.04); }
+    .upload-zone:hover { border-color: var(--accent); background: rgba(212,224,0,.04); }
     .upload-zone input[type="file"] {
       position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
       padding: 0; margin: 0; border: none; background: none;
     }
-    .upload-zone input[type="file"]:focus + .upload-content { outline: 2px solid var(--orange); }
+    .upload-zone input[type="file"]:focus + .upload-content { outline: 2px solid var(--accent); }
     .upload-icon { font-size: 2rem; margin-bottom: .5rem; }
     .upload-text { font-size: .9rem; color: #96a0aa; }
-    .upload-text strong { color: var(--orange); }
+    .upload-text strong { color: var(--accent); }
     .upload-hint { font-size: .78rem; color: var(--muted); margin-top: .3rem; }
 
     .form-submit { display: flex; justify-content: center; margin-top: 2rem; }
@@ -420,7 +422,7 @@
     }
     .success-msg.show { display: block; }
     .success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
-    .success-msg h3 { color: var(--orange); margin-bottom: .5rem; }
+    .success-msg h3 { color: var(--accent); margin-bottom: .5rem; }
 
     /* ─── Footer ────────────────────────────────────────────────────── */
     footer {
@@ -436,11 +438,11 @@
     .footer-left strong { color: var(--light); }
     .footer-links { display: flex; gap: 1.5rem; list-style: none; }
     .footer-links a { font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--orange); }
+    .footer-links a:hover { color: var(--accent); }
 
     /* ─── Divider ───────────────────────────────────────────────────── */
     .section-divider {
-      width: 60px; height: 3px; background: var(--orange);
+      width: 60px; height: 3px; background: var(--accent);
       border-radius: 2px; margin: 1.2rem 0 1.8rem;
     }
 
@@ -581,7 +583,7 @@
                alt="Imagefilm PASSURA Automobile" loading="eager" fetchpriority="high" decoding="async"
                onerror="this.src='https://i.ytimg.com/vi/G0TsQS8SiAc/mqdefault.jpg'">
           <div class="play-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#111315">
               <polygon points="5,3 19,12 5,21"/>
             </svg>
           </div>
@@ -627,7 +629,7 @@
              alt="Einblick in die KFZ-Werkstatt bei PASSURA" loading="lazy" decoding="async"
              onerror="this.src='https://i.ytimg.com/vi/G0TsQS8SiAc/mqdefault.jpg'">
         <div class="play-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#111315">
             <polygon points="5,3 19,12 5,21"/>
           </svg>
         </div>
@@ -733,7 +735,7 @@
              alt="Einblick in den Karosseriebau bei PASSURA" loading="lazy" decoding="async"
              onerror="this.src='https://i.ytimg.com/vi/G0TsQS8SiAc/mqdefault.jpg'">
         <div class="play-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#111315">
             <polygon points="5,3 19,12 5,21"/>
           </svg>
         </div>
@@ -885,7 +887,7 @@
               <div class="upload-icon">📄</div>
               <div class="upload-text"><strong>Lebenslauf auswählen</strong> oder hierher ziehen</div>
               <div class="upload-hint">PDF, DOC oder DOCX · max. 10 MB · kannst du auch später nachreichen</div>
-              <div class="file-name" style="margin-top:.5rem; font-size:.85rem; color:var(--orange);"></div>
+              <div class="file-name" style="margin-top:.5rem; font-size:.85rem; color:var(--accent);"></div>
             </div>
           </div>
         </div>
@@ -899,7 +901,7 @@
               <div class="upload-icon">📎</div>
               <div class="upload-text"><strong>Zeugnisse, Zertifikate, Referenzen</strong> – mehrere Dateien möglich</div>
               <div class="upload-hint">PDF, DOC, DOCX, JPG, PNG · max. 20 MB gesamt</div>
-              <div class="file-names" style="margin-top:.5rem; font-size:.85rem; color:var(--orange);"></div>
+              <div class="file-names" style="margin-top:.5rem; font-size:.85rem; color:var(--accent);"></div>
             </div>
           </div>
         </div>
@@ -1154,7 +1156,7 @@
       if (window.scrollY >= s.offsetTop - 120) current = s.id;
     });
     navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--orange)' : '';
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
     });
   }, { passive: true });
 </script>
